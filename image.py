@@ -28,7 +28,10 @@ def forward(image_number):
     my_lable.grid(row=0,column=0, columnspan=3)
     button_next.grid(row=1,column=2)
     button_back.grid(row=1,column=0)
-    
+    #updating the status widget every time press the next button
+    index=image_number+1
+    status = Label(window,text="Image "+str(index)+" of "+str(len(imageList)),bd=1,relief=SUNKEN,anchor=E)
+    status.grid(row=2,column=0,columnspan=3,sticky=W+E)
 
 def back(image_number):
     global my_lable
@@ -49,6 +52,10 @@ def back(image_number):
     my_lable.grid(row=0,column=0, columnspan=3)
     button_next.grid(row=1,column=2)
     button_back.grid(row=1,column=0)
+    #updating the status widget every time press the back button
+    index=image_number+1
+    status = Label(window,text="Image "+str(index)+" of "+str(len(imageList)),bd=1,relief=SUNKEN,anchor=E)
+    status.grid(row=2,column=0,columnspan=3,sticky=W+E)
     
 
 #how to deal with images in tkinter
@@ -63,6 +70,13 @@ image6 = ImageTk.PhotoImage(Image.open("/home/aditya/development/python/imageVie
 #creating an image list so that we can scroll through the images in our application
 imageList=[image1,image2,image3,image4,image5,image6]
 
+#creating a status label that will tell us on which image we are on and the total no of images in app
+#bd=1 will give the status widget a border of thinkess = 1
+#relief=SUNKEN will sink the entire widget within the border inside the screen
+#anchor=E allows us to achor our widget on a particular position in the application
+# E = right in x axis :-> this means our widget will be anchored in the right side of the screen
+status = Label(window,text="Image 1 of "+str(len(imageList)),bd=1,relief=SUNKEN,anchor=E)
+
 #creating back and next button
 button_back = Button(window,text='<<',command=lambda : back(0))
 button_next = Button(window,text=">>",command=lambda : forward(1))
@@ -74,7 +88,11 @@ my_lable = Label(image=image1)
 my_lable.grid(row=0,column=0, columnspan=3)
 
 #putting back button on the app screen
-button_back.grid(row=1,column=0)
-Button_exit.grid(row=1,column=1)
-button_next.grid(row=1,column=2)
+button_back.grid(row=1,column=0,pady=10)
+Button_exit.grid(row=1,column=1,pady=10)
+button_next.grid(row=1,column=2,pady=10)
+#sticky=W+E will allow us to streach a widget along x axis
+#sticky=N+S will allow us to streach a widget along y axis
+#N = up along y axis, S=down along Y axis, E= right along X axis ,W= left along x axis
+status.grid(row=2,column=0,columnspan=3,sticky=W+E)
 window.mainloop()
