@@ -3,6 +3,9 @@ from tkinter import *
 #type in terminal :- for python3.5 and above--> sudo apt-get install python3-pil python3-pil.imagetk
 #this module allows us to use png and jpg images in our program
 from PIL import ImageTk,Image
+#import message box to create a pop up window of information display type
+from tkinter import messagebox
+
 window = Tk()
 window.title("image viewer")
 
@@ -95,4 +98,15 @@ button_next.grid(row=1,column=2,pady=10)
 #sticky=N+S will allow us to streach a widget along y axis
 #N = up along y axis, S=down along Y axis, E= right along X axis ,W= left along x axis
 status.grid(row=2,column=0,columnspan=3,sticky=W+E)
+
+#creating a function for our pop up window
+def dev():
+    #create a message box showinfo will just show some kind of information on the pop up window it is not interactive
+    #showinfo("the title bar that you want to show up", message that you want to show in your actual pop up window)
+    messagebox.showinfo("developer info", "Name = Aditya Kumar \n class = B.tech 2nd year \n college = SITM \n Roll number = 1901230100001")
+
+#now here we are going to create a button which when clicked will trigger a popup window
+ButtonDev = Button(window,text="Developer information",command = dev).grid(row=3,column=0,columnspan=4, padx = 20, pady=20)
+
+
 window.mainloop()
